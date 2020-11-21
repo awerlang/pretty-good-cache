@@ -1,5 +1,5 @@
 {
-  "name": "starter-ts",
+  "name": "pretty-good-cache-ts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awerlang/starter-ts.git"
+    "url": "git+https://github.com/awerlang/pretty-good-cache-ts.git"
   },
   "author": "André Werlang",
   "bugs": {
-    "url": "https://github.com/awerlang/starter-ts/issues"
+    "url": "https://github.com/awerlang/pretty-good-cache-ts/issues"
   },
-  "homepage": "https://github.com/awerlang/starter-ts#readme",
+  "homepage": "https://github.com/awerlang/pretty-good-cache-ts#readme",
   "devDependencies": {
     "@stryker-mutator/core": "^4.1.2",
     "@stryker-mutator/jest-runner": "^4.1.2",
