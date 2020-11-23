@@ -9,6 +9,7 @@ export interface Tail<V> {
 export interface Item<V> {
     next: Item<V> | Tail<V>
     previous: Item<V> | Head<V>
+    key: string
     value: V
 }
 
@@ -25,4 +26,8 @@ export function unshiftItem<V>(item: Item<V>, head: Head<V>) {
 export function spliceItem<V>(item: Item<V>) {
     const { next, previous } = item
     link(previous, next)
+}
+
+export function isItem<V>(item: Item<V> | Head<V> | Tail<V>): item is Item<V> {
+    return (item as Item<V>).value !== undefined
 }

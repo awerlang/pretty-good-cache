@@ -1,7 +1,8 @@
-import { Head, Tail, Item, unshiftItem, spliceItem, link } from "./linked-list"
+import { EvictionStrategy, None } from "./eviction-strategy"
+import { Head, Tail, Item, unshiftItem, spliceItem, link, isItem } from "./linked-list"
 
 export class Cache {
-    constructor(state: Map<string, string>) {
+    constructor(state: Map<string, string>, private evictionStrategy: EvictionStrategy = new None()) {
         const head = {} as Head<string>, tail = {} as Tail<string>
         link(head, tail)
         this.head = head
@@ -35,9 +36,10 @@ export class Cache {
             return false
         }
 
-        const item = { value } as Item<string>
+        const item = { key, value } as Item<string>
         unshiftItem(item, this.head)
         this.state.set(key, item)
+        this.evictionStrategy.added(this, item)
         return true
     }
 
@@ -53,4 +55,11 @@ export class Cache {
         return true
     }
 
+    removeOldest() {
+        const oldest = this.tail.previous
+        if (isItem(oldest)) {
+            spliceItem(oldest)
+            this.state.delete(oldest.key)
+        }
+    }
 }

@@ -74,3 +74,22 @@ describe('update()', () => {
         expect(cache.get('A:1')).toBe('VALUE')
     })
 })
+
+describe('removeOldest()', () => {
+    test('does nothing on an empty list', () => {
+        const cache = new Cache(new Map())
+
+        expect(() => cache.removeOldest()).not.toThrow()
+    })
+
+    test('existing key should succeed', () => {
+        const state = new Map([
+            ['A:1', 'value']
+        ])
+        const cache = new Cache(state)
+
+        cache.removeOldest()
+
+        expect(cache.size).toBe(0)
+    })
+})

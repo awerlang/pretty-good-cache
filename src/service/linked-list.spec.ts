@@ -1,4 +1,4 @@
-import { Item, link, unshiftItem, spliceItem } from "./linked-list"
+import { Item, link, unshiftItem, spliceItem, isItem } from "./linked-list"
 
 describe('link()', () => {
     test('links two items', () => {
@@ -38,5 +38,23 @@ describe('spliceItem()', () => {
 
         expect(head.next === tail).toBe(true)
         expect(tail.previous === head).toBe(true)
+    })
+})
+
+describe('isItem()', () => {
+    test('returns true for an item', () => {
+        const item = { value: '123' } as Item<string>
+
+        const result = isItem(item)
+
+        expect(result).toBe(true)
+    })
+
+    test('returns false for a non-item', () => {
+        const item = {} as Item<string>
+
+        const result = isItem(item)
+
+        expect(result).toBe(false)
     })
 })
