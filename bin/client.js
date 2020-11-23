@@ -26,7 +26,7 @@ function callback(response) {
 }
 
 const req = http.request(options, callback);
-if (value) {
+if (value !== undefined) {
     req.write(value);
 }
 req.end();
